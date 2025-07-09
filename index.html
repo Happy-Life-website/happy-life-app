@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Welcome to Happy Life</title>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    body {
+      background: linear-gradient(135deg, #ffe6f0, #fffbe6);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      overflow: hidden;
+      font-family: 'Quicksand', sans-serif;
+    }
+
+    .auth-container {
+      background: white;
+      border-radius: 20px;
+      box-shadow: 0 8px 20px rgba(255, 107, 107, 0.2);
+      padding: 30px 20px;
+      max-width: 400px;
+      width: 90%;
+      text-align: center;
+      position: relative;
+      z-index: 10;
+    }
+
+    .auth-container h2 {
+      font-size: 2rem;
+      color: #ff6b6b;
+      margin-bottom: 10px;
+    }
+
+    .auth-container p {
+      font-size: 1rem;
+      color: #555;
+      margin-bottom: 20px;
+    }
+
+    .auth-container input {
+      width: 90%;
+      padding: 12px;
+      border: 2px solid #ffeb3b;
+      border-radius: 12px;
+      margin-bottom: 15px;
+      font-size: 1rem;
+    }
+
+    .auth-container input:focus {
+      outline: none;
+      border-color: #ff6b6b;
+    }
+
+    .auth-btn {
+      background: linear-gradient(to right, #ff6b6b, #ffeb3b);
+      color: white;
+      font-weight: bold;
+      border: none;
+      padding: 12px;
+      border-radius: 12px;
+      font-size: 1rem;
+      width: 90%;
+      cursor: pointer;
+      transition: transform 0.2s;
+    }
+
+    .auth-btn:hover {
+      transform: scale(1.05);
+      background: #ffb347;
+    }
+
+    .switch-link {
+      margin-top: 15px;
+      font-size: 0.9rem;
+    }
+
+    .switch-link a {
+      color: #ff6b6b;
+      font-weight: bold;
+      text-decoration: none;
+    }
+
+    .emoji-bg {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      overflow: hidden;
+      z-index: 1;
+    }
+
+    .emoji {
+      font-size: 1.8rem;
+      position: absolute;
+      animation: float 8s infinite ease-in-out;
+      opacity: 0.6;
+    }
+
+    @keyframes float {
+      0% {
+        transform: translateY(0) rotate(0deg);
+      }
+      50% {
+        transform: translateY(-30px) rotate(180deg);
+      }
+      100% {
+        transform: translateY(0) rotate(360deg);
+      }
+    }
+
+    .emoji:nth-child(1) { top: 10%; left: 15%; animation-duration: 7s; }
+    .emoji:nth-child(2) { top: 30%; left: 70%; animation-duration: 6s; }
+    .emoji:nth-child(3) { top: 60%; left: 25%; animation-duration: 8s; }
+    .emoji:nth-child(4) { top: 20%; left: 50%; animation-duration: 9s; }
+    .emoji:nth-child(5) { top: 70%; left: 80%; animation-duration: 5s; }
+
+  </style>
+</head>
+<body>
+
+  <div class="emoji-bg">
+    <div class="emoji">🌈</div>
+    <div class="emoji">😊</div>
+    <div class="emoji">💖</div>
+    <div class="emoji">🌟</div>
+    <div class="emoji">✨</div>
+  </div>
+
+  <div class="auth-container" id="loginBox">
+    <h2>Welcome Back!</h2>
+    <p>Login to your Happy Life journey</p>
+    <input type="email" placeholder="Email" required />
+    <input type="password" placeholder="Password" required />
+    <button class="auth-btn">Log In</button>
+    <div class="switch-link">
+      Don’t have an account? <a href="#" onclick="toggleForm()">Sign Up</a>
+    </div>
+  </div>
+
+  <div class="auth-container" id="signupBox" style="display: none;">
+    <h2>Create Account</h2>
+    <p>Start your Happy Life journey</p>
+    <input type="text" placeholder="Full Name" required />
+    <input type="email" placeholder="Email" required />
+    <input type="password" placeholder="Password" required />
+    <button class="auth-btn">Get Started</button>
+    <div class="switch-link">
+      Already have an account? <a href="#" onclick="toggleForm()">Log In</a>
+    </div>
+  </div>
+
+  <script>
+  function toggleForm() {
+    const login = document.getElementById("loginBox");
+    const signup = document.getElementById("signupBox");
+    login.style.display = login.style.display === "none" ? "block" : "none";
+    signup.style.display = signup.style.display === "none" ? "block" : "none";
+  }
+
+  // Redirect after fake login/signup
+  document.querySelectorAll(".auth-btn").forEach(btn => {
+    btn.addEventListener("click", function () {
+      // Optional: Add simple form validation if needed here
+      window.location.href = "homepage.html"; // Redirect to your actual homepage
+    });
+  });
+</script>
+
+</body>
+</html>

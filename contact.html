@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us - Happy life</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="script.js" defer></script>
+    <style>
+        .success-message {
+            display: none;
+            color: green;
+            font-weight: bold;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <nav>
+            <ul>
+                <li><a href="homepage.html">Home</a></li>
+                <li><a href="resources.html">Resources</a></li>
+                <li><a href="mood.html">Mood</a></li>
+                <li><a href="about.html">About</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section id="contacts">
+        <h2 id="emergency-header">Emergency Contacts</h2>
+        <div class="contacts-container">
+            <div class="contact-card">
+                <h3>National Helpline</h3>
+                <p>Call: 14416 or 1-800-891-4416</p>
+                <p>For immediate mental health support in India, you can dial the 24/7 toll-free helpline number.</p>
+            </div>
+            <div class="contact-card">
+                <h3>Jagruti Rehabilitation Center</h3>
+                <p>Address: Jagruti Rehabilitation Centre, Pune Solapur Road, Hadapsar, Pune - 411028 (Opposite Krishi Tantra Vidyalaya, Sitai Hake Nagar). </p>
+                <p>Website: www.jagrutirehab.org </p>
+            </div>
+            <div class="contact-card">
+                <h3>Add Your Contact</h3>
+                <form id="contact-form" method="POST">
+    <input type="text" name="name" placeholder="Contact Name" required />
+    <input type="tel" name="phone" placeholder="Phone Number" required />
+    <button type="submit">Add Contact</button>
+</form>
+<p class="success-message">Contact saved successfully!</p>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2025 Happy Life Project</p>
+    </footer>
+
+    <script>
+        $(document).ready(function(){
+    // Blinking Emergency Contacts Header
+    setInterval(function() {
+        $("#emergency-header").fadeOut(500).fadeIn(500);
+    }, 1000);
+
+    // Fake contact form submission (no backend)
+$("#contact-form").submit(function(event) {
+    event.preventDefault(); // Prevent form refresh
+
+    // Just show success message and reset form
+    $(".success-message").text("Contact saved successfully!").slideDown().delay(2000).slideUp();
+    $("#contact-form")[0].reset();
+});
+
+    // Active nav link
+    $("nav a").click(function(){
+        $("nav a").removeClass("active");
+        $(this).addClass("active");
+    });
+});
+    </script>
+
+</body>
+</html>
