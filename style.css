@@ -1411,17 +1411,24 @@ footer {
 }
 /* ===== Responsive Fixes for Navbar and Chatbox ===== */
 
-/* Make nav items wrap on smaller screens */
+/* Fix navbar wrapping on small screens */
 @media (max-width: 768px) {
   nav ul {
-    flex-wrap: wrap;
-    justify-content: center;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
     gap: 10px;
+    padding: 0 10px;
+  }
+
+  nav ul li {
+    flex-shrink: 0;
   }
 
   nav ul li a {
-    font-size: 0.95rem;
-    padding: 8px 10px;
+    font-size: 0.9rem;
+    padding: 6px 10px;
+    white-space: nowrap;
   }
 }
 
