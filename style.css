@@ -1477,4 +1477,36 @@ button,
 select {
   font-size: 16px !important; /* Stops iOS zoom */
 }
+@media (max-width: 768px) {
+  nav {
+    overflow-x: auto;
+    white-space: nowrap;
+    width: 100%;
+    padding: 10px 0;
+  }
+
+  nav ul {
+    display: inline-flex;
+    flex-wrap: nowrap;
+    gap: 10px;
+    padding: 0 10px;
+    margin: 0;
+    overflow-x: auto;
+    list-style: none;
+  }
+
+  nav ul li {
+    flex-shrink: 0;
+  }
+
+  nav ul li a {
+    font-size: 0.9rem;
+    padding: 6px 12px;
+    white-space: nowrap;
+    display: inline-block;
+    border: 2px solid transparent;
+    border-radius: 8px;
+  }
+}
+
 
