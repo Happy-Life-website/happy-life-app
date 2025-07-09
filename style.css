@@ -1286,146 +1286,28 @@ footer {
   to { transform: scale(1); opacity: 1; }
 }
 
-/* ========== MOBILE FRIENDLY ADJUSTMENTS ========== */
-@media (max-width: 768px) {
-  header {
-    padding: 20px 10px;
-  }
+/* =====✅ Final Responsive Fixes for Navbar & Chatbox ===== */
 
-  nav {
-    padding: 10px;
-    border-radius: 0;
-    box-shadow: none;
-  }
-
-  nav ul {
-    flex-direction: column;
-    gap: 10px;
-  }
-
-  nav ul li a {
-    display: block;
-    padding: 10px;
-    text-align: center;
-  }
-
-  .hero-content h2 {
-    font-size: 1.8rem;
-  }
-
-  .hero-content p {
-    font-size: 1rem;
-  }
-
-  .cta-button {
-    font-size: 0.9rem;
-    padding: 8px 16px;
-  }
-
-  .resource-cards,
-  .contacts-container {
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .card,
-  .contact-card {
-    width: 90%;
-  }
-
-  #mood-form textarea,
-  #user-input {
-    width: 100%;
-  }
-
-  #send-btn {
-    margin-top: 10px;
-    width: 100%;
-  }
-
-  .chat-log p {
-    font-size: 0.9rem;
-    padding: 8px 12px;
-    max-width: 100%;
-  }
-
-  .typing-indicator {
-    width: 50px;
-    padding: 4px 8px;
-  }
-
-  .emoji {
-    font-size: 16px;
-  }
-
-  #resources h2,
-  #contacts h2,
-  #testimonials h2,
-  #mood-tracker h2,
-  #compliment-section h2,
-  #music-section h2,
-  #open-heart-chat h2 {
-    font-size: 1.5rem;
-  }
-
-  #chat-log {
-    height: 180px;
-  }
-
-  .modal-content {
-    width: 95%;
-    padding: 1.5em;
-  }
-
-  .modal-buttons {
-    flex-direction: column;
-    gap: 10px;
-  }
-
-  .modal-buttons button {
-    width: 100%;
-  }
-
-  .testimonial-card {
-    width: 90%;
-  }
-
-  .team-member {
-    padding: 15px 10px;
-  }
-
-  .back-home a {
-    font-size: 1rem;
-    padding: 8px 15px;
-  }
-
-  footer {
-    font-size: 0.9rem;
-    padding: 15px 10px;
-  }
-
-  #scrollToTop {
-    padding: 8px 12px;
-    font-size: 0.9rem;
-  }
-}
-/* ===== Responsive Fixes for Navbar and Chatbox ===== */
-
-/* ==== Navbar stays in one line, scrolls on small screens ==== */
+/* Navbar: Single line layout, scrollable on small screens */
 nav {
   overflow-x: auto;
   white-space: nowrap;
   width: 100%;
+  padding: 10px 0;
+  background-color: #ffffff;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
 }
 
 nav ul {
   display: flex;
-  flex-wrap: nowrap; /* No wrapping into rows */
+  flex-wrap: nowrap;
   justify-content: center;
   list-style: none;
   margin: 0;
-  padding: 10px;
-  gap: 16px;
+  padding: 0 10px;
+  gap: 20px;
   overflow-x: auto;
   -webkit-overflow-scrolling: touch;
 }
@@ -1436,25 +1318,37 @@ nav ul li {
 
 nav ul li a {
   display: inline-block;
-  white-space: nowrap;
-  font-size: 1rem;
-  font-weight: bold;
-  color: #ff6b6b;
-  padding: 8px 14px;
-  border-radius: 10px;
   text-decoration: none;
-  transition: all 0.3s ease;
+  color: #ff6b6b;
+  font-weight: bold;
+  font-size: 1rem;
+  padding: 8px 14px;
   border: 2px solid transparent;
+  border-radius: 10px;
+  white-space: nowrap;
+  transition: all 0.3s ease-in-out;
 }
 
 nav ul li a:hover {
   background-color: #ff6b6b;
-  color: #fff;
+  color: white;
   border: 2px solid #ffeb3b;
   box-shadow: 0 4px 6px rgba(255, 107, 107, 0.3);
 }
 
-/* Chatbox layout fix for mobile */
+/* Optional: style mobile scrollbar in navbar */
+nav ul::-webkit-scrollbar {
+  height: 6px;
+}
+nav ul::-webkit-scrollbar-thumb {
+  background: #ffb6b9;
+  border-radius: 10px;
+}
+nav ul::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+/* ✅ Chatbox Responsive Fix */
 @media (max-width: 600px) {
   #open-heart-chat {
     padding: 20px 10px;
@@ -1492,12 +1386,10 @@ nav ul li a:hover {
   }
 }
 
-/* Prevent zooming on input fields on mobile */
+/* ✅ Prevent mobile zoom on inputs */
 input,
 textarea,
 button,
 select {
-  font-size: 16px !important; /* Stops iOS zoom */
+  font-size: 16px !important;
 }
-
-  
