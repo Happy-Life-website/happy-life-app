@@ -1411,25 +1411,47 @@ footer {
 }
 /* ===== Responsive Fixes for Navbar and Chatbox ===== */
 
-/* Fix navbar wrapping on small screens */
-@media (max-width: 768px) {
-  nav ul {
-    flex-wrap: nowrap;
-    overflow-x: auto;
-    -webkit-overflow-scrolling: touch;
-    gap: 10px;
-    padding: 0 10px;
-  }
+/* ==== Navbar stays in one line, scrolls on small screens ==== */
+nav {
+  overflow-x: auto;
+  white-space: nowrap;
+  width: 100%;
+}
 
-  nav ul li {
-    flex-shrink: 0;
-  }
+nav ul {
+  display: flex;
+  flex-wrap: nowrap; /* No wrapping into rows */
+  justify-content: center;
+  list-style: none;
+  margin: 0;
+  padding: 10px;
+  gap: 16px;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
 
-  nav ul li a {
-    font-size: 0.9rem;
-    padding: 6px 10px;
-    white-space: nowrap;
-  }
+nav ul li {
+  flex-shrink: 0;
+}
+
+nav ul li a {
+  display: inline-block;
+  white-space: nowrap;
+  font-size: 1rem;
+  font-weight: bold;
+  color: #ff6b6b;
+  padding: 8px 14px;
+  border-radius: 10px;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  border: 2px solid transparent;
+}
+
+nav ul li a:hover {
+  background-color: #ff6b6b;
+  color: #fff;
+  border: 2px solid #ffeb3b;
+  box-shadow: 0 4px 6px rgba(255, 107, 107, 0.3);
 }
 
 /* Chatbox layout fix for mobile */
@@ -1477,36 +1499,5 @@ button,
 select {
   font-size: 16px !important; /* Stops iOS zoom */
 }
-@media (max-width: 768px) {
-  nav {
-    overflow-x: auto;
-    white-space: nowrap;
-    width: 100%;
-    padding: 10px 0;
-  }
 
-  nav ul {
-    display: inline-flex;
-    flex-wrap: nowrap;
-    gap: 10px;
-    padding: 0 10px;
-    margin: 0;
-    overflow-x: auto;
-    list-style: none;
-  }
-
-  nav ul li {
-    flex-shrink: 0;
-  }
-
-  nav ul li a {
-    font-size: 0.9rem;
-    padding: 6px 12px;
-    white-space: nowrap;
-    display: inline-block;
-    border: 2px solid transparent;
-    border-radius: 8px;
-  }
-}
-
-
+  
