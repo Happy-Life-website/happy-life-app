@@ -4,8 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Mood Tracker - Happy Life</title>
-  <link rel="manifest" href="manifest.json" />
-  <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="style.css" />
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 <body>
@@ -232,19 +231,6 @@ $(".emoji-btn").click(function () {
   // Add the new one
   $("body").addClass(moodClass);
 });
-// Toggle mood logs visibility
-$("#view-logs-btn").click(function () {
-  $("#mood-entries").slideToggle();
-});
-
-// Service Worker
-if ('serviceWorker' in navigator) {
-  window.addEventListener('load', () => {
-    navigator.serviceWorker.register('service-worker.js')
-      .then(reg => console.log('Service Worker registered', reg))
-      .catch(err => console.error('Service Worker failed', err));
-  });
-}
 </script>
 
 </body>
