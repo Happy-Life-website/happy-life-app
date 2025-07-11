@@ -45,7 +45,8 @@
             </div>
             <div class="contact-card">
                 <h3>Add Your Contact</h3>
-                <form id="contact-form" method="POST" action="https://your-domain.epizy.com/save_contact.php">
+                <form method="POST" action="https://happy-life.infinityfreeapp.com/save_contact.php">
+
   <input type="text" name="name" placeholder="Contact Name" required />
   <input type="tel" name="phone" placeholder="Phone Number" required />
   <button type="submit">Add Contact</button>
@@ -106,14 +107,6 @@
       $(this).addClass("active");
     });
   });
-
-if ('serviceWorker' in navigator) {
-  window.addEventListener('load', () => {
-    navigator.serviceWorker.register('service-worker.js')
-      .then(reg => console.log('Service Worker registered', reg))
-      .catch(err => console.error('Service Worker failed', err));
-  });
-}
 
 </script>
 
