@@ -2,6 +2,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<link rel="manifest" href="manifest.json">
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Contact Us - Happy life</title>
@@ -90,6 +92,14 @@ $(document).ready(function () {
         targetId.slideToggle(600);
     });
 });
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('service-worker.js')
+      .then(reg => console.log('Service Worker registered', reg))
+      .catch(err => console.error('Service Worker failed', err));
+  });
+}
+
 </script>
         <p>&copy; 2025 Happy Life Project</p>
     </footer>

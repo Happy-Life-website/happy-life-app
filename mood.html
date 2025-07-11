@@ -1,72 +1,73 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contact Us - Happy Life</title>
-    <link rel="stylesheet" href="style.css">
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="script.js" defer></script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mood Tracker - Happy Life</title>
+  <link rel="manifest" href="manifest.json" />
+  <link rel="stylesheet" href="style.css" />
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 <body>
 
 <header>
-    <nav>
-        <ul>
-            <li><a href="homepage.html">Home</a></li>
-            <li><a href="resources.html">Resources</a></li>
-            <li><a href="contact.html">Contacts</a></li>
-            <li><a href="about.html">About</a></li>
-        </ul>
-    </nav>
+  <nav>
+    <ul>
+      <li><a href="homepage.html">Home</a></li>
+      <li><a href="resources.html">Resources</a></li>
+      <li><a href="contact.html">Contacts</a></li>
+      <li><a href="about.html">About</a></li>
+    </ul>
+  </nav>
 </header>
 
 <section id="mood-assessment">
-    <h2>Mood Assessment</h2>
-    <p>How are you feeling today?</p>
-    <div class="dropdown">
-        <select id="mood-select">
-            <option value="" selected disabled>Select your mood</option>
-            <option value="low">Low</option>
-            <option value="neutral">Neutral</option>
-            <option value="happy">Happy</option>
-        </select>
-    </div>
-    <div class="mood-feedback" id="mood-feedback">
-        <!-- Feedback will appear here -->
-    </div>
+  <h2>Mood Assessment</h2>
+  <p>How are you feeling today?</p>
+  <div class="dropdown">
+    <select id="mood-select">
+      <option value="" selected disabled>Select your mood</option>
+      <option value="low">Low</option>
+      <option value="neutral">Neutral</option>
+      <option value="happy">Happy</option>
+    </select>
+  </div>
+  <div class="mood-feedback" id="mood-feedback"></div>
 </section>
 
 <section id="mood-tracker">
-    <h2>Mood Tracker 😊</h2>
-    <form id="mood-form">
-        <label for="mood">How are you feeling today?</label>
-        <div id="emoji-picker">
-            <button type="button" class="emoji-btn" data-mood="Happy">😊</button>
-            <button type="button" class="emoji-btn" data-mood="Sad">😢</button>
-            <button type="button" class="emoji-btn" data-mood="Angry">😠</button>
-            <button type="button" class="emoji-btn" data-mood="Anxious">😟</button>
-            <button type="button" class="emoji-btn" data-mood="Neutral">😐</button>
-        </div>
-        <label for="mood-note">Notes (optional):</label>
-        <textarea id="mood-note" name="mood-note" placeholder="What’s on your mind?"></textarea>
-        <button type="submit">Log Mood</button>
-    </form>
-    <div id="mood-log">
-        <ul id="mood-entries">
-            <!-- Mood entries will appear here -->
-        </ul>
+  <h2>Mood Tracker 😊</h2>
+  <form id="mood-form">
+    <label for="mood">How are you feeling today?</label>
+    <div id="emoji-picker">
+      <button type="button" class="emoji-btn" data-mood="Happy">😊</button>
+      <button type="button" class="emoji-btn" data-mood="Sad">😢</button>
+      <button type="button" class="emoji-btn" data-mood="Angry">😠</button>
+      <button type="button" class="emoji-btn" data-mood="Anxious">😟</button>
+      <button type="button" class="emoji-btn" data-mood="Neutral">😐</button>
     </div>
-</section>
+    <label for="mood-note">Notes (optional):</label>
+    <textarea id="mood-note" name="mood-note" placeholder="What’s on your mind?"></textarea>
+    <button type="submit">Log Mood</button>
+  </form>
+
+  <div id="mood-log">
+    <button id="view-logs-btn">📜 See Past Logs</button>
+    <ul id="mood-entries" style="display: none;">
+        <!-- Mood entries will appear here -->
+    </ul>
+</div></section>
+
 <section id="compliment-section">
-    <h2>💖 A Compliment for You</h2>
-    <button id="get-compliment">Give me a smile 😊</button>
-    <p id="compliment-text"></p>
+  <h2>💖 A Compliment for You</h2>
+  <button id="get-compliment">Give me a smile 😊</button>
+  <p id="compliment-text"></p>
 </section>
+
 <section id="music-section">
-    <h2>🎶 Uplift Your Mood</h2>
-    <button id="play-music">Play a Happy Tune</button>
-    <audio id="happy-audio" src="https://www.bensound.com/bensound-music/bensound-sunny.mp3"></audio>
+  <h2>🎶 Uplift Your Mood</h2>
+  <button id="play-music">Play a Happy Tune</button>
+  <audio id="happy-audio" src="https://www.bensound.com/bensound-music/bensound-sunny.mp3"></audio>
 </section>
 
 <section id="open-heart-chat">
@@ -80,144 +81,171 @@
   </div>
 </section>
 
+<footer>
+  <p>&copy; 2025 Happy Life Project</p>
+</footer>
+
 <script>
 $(document).ready(function () {
-    let selectedMood = '';
+  let selectedMood = "";
 
-    // 🎨 Mood-based background color
-    $(".emoji-btn").click(function () {
-        selectedMood = $(this).data("mood");
-        let color = "";
-        switch (selectedMood) {
-            case "Happy": color = "#FFD700"; break;
-            case "Sad": color = "#87CEFA"; break;
-            case "Angry": color = "#FF6347"; break;
-            case "Anxious": color = "#D8BFD8"; break;
-            case "Neutral": color = "#D3D3D3"; break;
-        }
-        $("body").css("background-color", color);
-    });
+  // Emoji selector
+  $(".emoji-btn").click(function () {
+    selectedMood = $(this).data("mood");
+    $(".emoji-btn").removeClass("selected");
+    $(this).addClass("selected");
+  });
 
-    // ✅ Mood form submission
-    $("#mood-form").submit(function (event) {
-        event.preventDefault();
-        const moodNote = $("#mood-note").val();
-        if (!selectedMood) {
-            alert("Please select a mood using the emojis before logging.");
-            return;
-        }
-        const moodEntry = `<li><strong>${selectedMood}</strong>: ${$("<div>").text(moodNote).html()}</li>`;
-        $("#mood-entries").append(moodEntry);
-        $("#mood-form")[0].reset();
-        selectedMood = '';
-    });
-
-    // ✅ Mood dropdown feedback
-    $("#mood-select").change(function () {
-        const mood = $(this).val();
-        const feedback = $("#mood-feedback");
-
-        if (mood === "happy") {
-            feedback.html(`<p>That's wonderful! 😊 Stay joyful and spread the happiness!</p><img src="https://media.giphy.com/media/l0MYt5jPR6QX5pnqM/giphy.gif" style="max-width: 300px;">`);
-        } else if (mood === "neutral") {
-            feedback.html(`<p>It's okay to feel neutral. Here's a little peaceful moment for you:</p><blockquote>"Take a deep breath. You’re doing fine."</blockquote><img src="https://media3.giphy.com/media/krP2NRkLqnKEg/giphy.gif" style="max-width: 200px;">`);
-        } else if (mood === "low") {
-            feedback.html(`<p>Feeling low? Here’s a gentle reminder that you’re not alone 💛</p><blockquote>"You’ve made it this far, and that’s something to be proud of."</blockquote><img src="https://media.giphy.com/media/QvBoMEcQ7DQXK/giphy.gif" style="max-width: 300px;">`);
-        }
-    });
-
-    // 💖 Compliment button
-    const compliments = [
-        "You're doing amazing!",
-        "You light up the world 🌟",
-        "You're stronger than you think 💪",
-        "You matter. Always 💖",
-        "You’re a beautiful soul ✨",
-        "Today, you are enough 🌈"
-    ];
-    $("#get-compliment").click(function () {
-        const msg = compliments[Math.floor(Math.random() * compliments.length)];
-        $("#compliment-text").text(msg);
-    });
-
-    // 🎶 Music toggle
-    $("#play-music").click(function () {
-        const audio = $("#happy-audio")[0];
-        if (audio.paused) {
-            audio.play();
-            $(this).text("Stop the Music 🔇");
-        } else {
-            audio.pause();
-            audio.currentTime = 0;
-            $(this).text("Play a Happy Tune");
-        }
-    });
-
-    // 🧠 Smart reply logic
-    function getSmartReply(message) {
-        const msg = message.toLowerCase();
-        if (msg.includes("sad") || msg.includes("depressed") || msg.includes("bad")) {
-            return "I'm really sorry you're feeling this way 😔. You're not alone.";
-        } else if (msg.includes("happy") || msg.includes("good")) {
-            return "That's awesome to hear! 😊 Keep shining!";
-        } else if (msg.includes("angry") || msg.includes("frustrated")) {
-            return "It’s okay to feel angry sometimes 😠. Let it out.";
-        } else if (msg.includes("hello") || msg.includes("hi")) {
-            return "Hey there! 👋 How can I help you today?";
-        } else if (msg.includes("lonely") || msg.includes("alone")) {
-            return "You're not alone 💛 I'm here for you.";
-        }
-
-        // Default fallback
-        const generalReplies = [
-            "Tell me more, I’m listening 👂",
-            "That’s important. Let’s talk 🤝",
-            "Your feelings matter 💖",
-            "I'm here for you 🌟",
-            "Keep going, you're doing great! 🌈"
-        ];
-        return generalReplies[Math.floor(Math.random() * generalReplies.length)];
+  // Mood log saving to localStorage
+  $("#mood-form").submit(function (event) {
+    event.preventDefault();
+    const moodNote = $("#mood-note").val();
+    if (!selectedMood) {
+      alert("Please select a mood emoji first.");
+      return;
     }
 
-    // 💬 Chat message logic
-    $("#send-btn").click(function () {
-        const userMessage = $("#user-input").val().trim();
-        if (userMessage === "") return;
+    const moodEntry = {
+      mood: selectedMood,
+      note: moodNote,
+      date: new Date().toLocaleString()
+    };
 
-        // Append user bubble
-        $("#chat-log").append(`<p class="chat-bubble user"><strong>You:</strong> ${$("<div>").text(userMessage).html()}</p>`);
-        $("#chat-log").scrollTop($("#chat-log")[0].scrollHeight);
+    let logs = JSON.parse(localStorage.getItem("moodLogs")) || [];
+    logs.push(moodEntry);
+    localStorage.setItem("moodLogs", JSON.stringify(logs));
 
-        // Typing animation
-        const typing = $(`
-            <div id="typing" class="typing-indicator chat-bubble bot">
-                <span></span><span></span><span></span>
-            </div>
-        `);
-        $("#chat-log").append(typing);
-        $("#chat-log").scrollTop($("#chat-log")[0].scrollHeight);
+    alert("Mood saved!");
+    $("#mood-form")[0].reset();
+    $(".emoji-btn").removeClass("selected");
+    selectedMood = "";
+  });
 
-        // Smart reply with delay
-        const botReply = getSmartReply(userMessage);
+  // ✅ Correct button logic to show saved mood logs
+$("#view-logs-btn").click(function () {
+  const logs = JSON.parse(localStorage.getItem("moodLogs")) || [];
+  const logList = $("#mood-entries");
+  logList.empty(); // clear previous content
 
-        setTimeout(() => {
-            $("#typing").remove();
-            const replyElement = $(`<p class="chat-bubble bot"><strong>HappyBot:</strong> ${botReply}</p>`);
-            $("#chat-log").append(replyElement);
-            $("#chat-log").scrollTop($("#chat-log")[0].scrollHeight);
-
-            // Optional: play reply sound
-            const ding = new Audio("https://cdn.pixabay.com/download/audio/2021/08/04/audio_2f9b5f1656.mp3?filename=ding-36029.mp3");
-            ding.play();
-        }, 1500);
-
-        $("#user-input").val("");
+  if (logs.length === 0) {
+    logList.append("<li>No mood logs yet.</li>");
+  } else {
+    logs.reverse().forEach(log => {
+      logList.append(`<li><strong>${log.date}</strong><br>😊 Mood: ${log.mood}<br>📝 Note: ${log.note || "—"}</li>`);
     });
+  }
+
+  logList.slideToggle(); // toggle visibility
 });
+
+  // Mood dropdown feedback
+  $("#mood-select").change(function () {
+    const mood = $(this).val();
+    const feedback = $("#mood-feedback");
+
+    if (mood === "happy") {
+      feedback.html(`<p>That's wonderful! 😊 Stay joyful!</p><img src="https://media.giphy.com/media/l0MYt5jPR6QX5pnqM/giphy.gif" style="max-width: 300px;">`);
+    } else if (mood === "neutral") {
+      feedback.html(`<p>It's okay to feel neutral.</p><blockquote>"Take a deep breath. You’re doing fine."</blockquote>`);
+    } else if (mood === "low") {
+      feedback.html(`<p>Feeling low? You're not alone 💛</p><blockquote>"You’ve made it this far. Be proud."</blockquote>`);
+    }
+  });
+
+  // Compliment button
+  const compliments = [
+    "You're doing amazing!",
+    "You light up the world 🌟",
+    "You're stronger than you think 💪",
+    "You matter. Always 💖",
+    "You’re a beautiful soul ✨",
+    "Today, you are enough 🌈"
+  ];
+  $("#get-compliment").click(function () {
+    const msg = compliments[Math.floor(Math.random() * compliments.length)];
+    $("#compliment-text").text(msg);
+  });
+
+  // Music player
+  $("#play-music").click(function () {
+    const audio = $("#happy-audio")[0];
+    if (audio.paused) {
+      audio.play();
+      $(this).text("Stop the Music 🔇");
+    } else {
+      audio.pause();
+      audio.currentTime = 0;
+      $(this).text("Play a Happy Tune");
+    }
+  });
+
+  // Smart chat logic
+  function getSmartReply(message) {
+    const msg = message.toLowerCase();
+    if (msg.includes("sad") || msg.includes("depressed")) return "I'm sorry you're feeling this way 😔";
+    if (msg.includes("happy")) return "That's awesome! 😊";
+    if (msg.includes("angry")) return "It's okay to feel angry. Breathe. 😤";
+    if (msg.includes("hello") || msg.includes("hi")) return "Hi there! 👋";
+    if (msg.includes("lonely")) return "You're not alone 💛";
+
+    const replies = [
+      "Tell me more, I’m listening 👂",
+      "That’s important. Let’s talk 🤝",
+      "Your feelings matter 💖",
+      "I'm here for you 🌟"
+    ];
+    return replies[Math.floor(Math.random() * replies.length)];
+  }
+
+  $("#send-btn").click(function () {
+    const message = $("#user-input").val().trim();
+    if (!message) return;
+
+    $("#chat-log").append(`<p class="chat-bubble user"><strong>You:</strong> ${message}</p>`);
+    $("#chat-log").scrollTop($("#chat-log")[0].scrollHeight);
+
+    $("#chat-log").append(`
+      <div id="typing" class="typing-indicator chat-bubble bot">
+        <span></span><span></span><span></span>
+      </div>
+    `);
+
+    setTimeout(() => {
+      $("#typing").remove();
+      const reply = getSmartReply(message);
+      $("#chat-log").append(`<p class="chat-bubble bot"><strong>HappyBot:</strong> ${reply}</p>`);
+      $("#chat-log").scrollTop($("#chat-log")[0].scrollHeight);
+      $("#user-input").val("");
+    }, 1500);
+  });
+});
+let selectedMood = "";
+
+// 🎨 Mood-based background color using body class
+$(".emoji-btn").click(function () {
+  selectedMood = $(this).data("mood");
+  const moodClass = "mood-" + selectedMood.toLowerCase();
+
+  // Remove previous mood classes
+  $("body").removeClass("mood-happy mood-sad mood-angry mood-anxious mood-neutral");
+
+  // Add the new one
+  $("body").addClass(moodClass);
+});
+// Toggle mood logs visibility
+$("#view-logs-btn").click(function () {
+  $("#mood-entries").slideToggle();
+});
+
+// Service Worker
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('service-worker.js')
+      .then(reg => console.log('Service Worker registered', reg))
+      .catch(err => console.error('Service Worker failed', err));
+  });
+}
 </script>
-<footer>
-    <p>&copy; 2025 Happy Life Project</p>
-</footer>
 
 </body>
 </html>

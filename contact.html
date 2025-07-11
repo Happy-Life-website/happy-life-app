@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<link rel="manifest" href="manifest.json">
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Contact Us - Happy life</title>
@@ -44,43 +46,77 @@
             </div>
             <div class="contact-card">
                 <h3>Add Your Contact</h3>
-                <form id="contact-form" method="POST">
-    <input type="text" name="name" placeholder="Contact Name" required />
-    <input type="tel" name="phone" placeholder="Phone Number" required />
-    <button type="submit">Add Contact</button>
+                <form id="contact-form" method="POST" action="save_contact.php">
+  <input type="text" name="name" placeholder="Contact Name" required />
+  <input type="tel" name="phone" placeholder="Phone Number" required />
+  <button type="submit">Add Contact</button>
 </form>
 <p class="success-message">Contact saved successfully!</p>
             </div>
         </div>
+<section id="quick-dial">
+  <h2>Quick Help 📞</h2>
+  <a href="tel:14416" class="dial-btn">Call National Helpline</a>
+  <a href="tel:18008914416" class="dial-btn">Call Mental Health Line</a>
+</section>
+
     </section>
+<section id="local-support">
+  <h2>Local & Online Support 🌐</h2>
+  <ul>
+    <li><a href="https://maps.google.com/?q=Mental+Health+Counselor+Pune" target="_blank">🗺️ Find Counselors Near You (Pune)</a></li>
+    <li><a href="https://www.mhpss.net" target="_blank">🌐 Global Mental Health Support</a></li>
+  </ul>
+</section>
+
 
     <footer>
         <p>&copy; 2025 Happy Life Project</p>
     </footer>
 
-    <script>
-        $(document).ready(function(){
-    // Blinking Emergency Contacts Header
-    setInterval(function() {
-        $("#emergency-header").fadeOut(500).fadeIn(500);
+ <script>
+  $(document).ready(function () {
+    // ✅ Show message based on URL status
+    const urlParams = new URLSearchParams(window.location.search);
+    const status = urlParams.get("status");
+
+    if (status === "success") {
+      $(".success-message")
+        .text("Contact saved successfully!")
+        .css("color", "green")
+        .slideDown()
+        .delay(3000)
+        .slideUp();
+    } else if (status === "error") {
+      $(".success-message")
+        .text("Something went wrong. Please try again.")
+        .css("color", "red")
+        .slideDown()
+        .delay(3000)
+        .slideUp();
+    }
+
+    // 💡 Blinking Emergency Contacts Header
+    setInterval(function () {
+      $("#emergency-header").fadeOut(500).fadeIn(500);
     }, 1000);
 
-    // Fake contact form submission (no backend)
-$("#contact-form").submit(function(event) {
-    event.preventDefault(); // Prevent form refresh
-
-    // Just show success message and reset form
-    $(".success-message").text("Contact saved successfully!").slideDown().delay(2000).slideUp();
-    $("#contact-form")[0].reset();
-});
-
-    // Active nav link
-    $("nav a").click(function(){
-        $("nav a").removeClass("active");
-        $(this).addClass("active");
+    // 🔷 Active nav link highlight
+    $("nav a").click(function () {
+      $("nav a").removeClass("active");
+      $(this).addClass("active");
     });
-});
-    </script>
+  });
+
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('service-worker.js')
+      .then(reg => console.log('Service Worker registered', reg))
+      .catch(err => console.error('Service Worker failed', err));
+  });
+}
+
+</script>
 
 </body>
 </html>

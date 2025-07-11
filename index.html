@@ -1,13 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#ff6b6b">
+<link rel="apple-touch-icon" href="icon-192.png">
+
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Welcome to Happy Life</title>
   <link rel="stylesheet" href="style.css" />
   <style>
     body {
-      background: linear-gradient(135deg, #ffe6f0, #fffbe6);
+      background: linear-gradient(135deg, #ffcccb, #fff176);
       display: flex;
       justify-content: center;
       align-items: center;
@@ -102,15 +106,9 @@
     }
 
     @keyframes float {
-      0% {
-        transform: translateY(0) rotate(0deg);
-      }
-      50% {
-        transform: translateY(-30px) rotate(180deg);
-      }
-      100% {
-        transform: translateY(0) rotate(360deg);
-      }
+      0% { transform: translateY(0) rotate(0deg); }
+      50% { transform: translateY(-30px) rotate(180deg); }
+      100% { transform: translateY(0) rotate(360deg); }
     }
 
     .emoji:nth-child(1) { top: 10%; left: 15%; animation-duration: 7s; }
@@ -118,7 +116,6 @@
     .emoji:nth-child(3) { top: 60%; left: 25%; animation-duration: 8s; }
     .emoji:nth-child(4) { top: 20%; left: 50%; animation-duration: 9s; }
     .emoji:nth-child(5) { top: 70%; left: 80%; animation-duration: 5s; }
-
   </style>
 </head>
 <body>
@@ -131,45 +128,78 @@
     <div class="emoji">✨</div>
   </div>
 
+  <!-- Login Box -->
   <div class="auth-container" id="loginBox">
     <h2>Welcome Back!</h2>
     <p>Login to your Happy Life journey</p>
-    <input type="email" placeholder="Email" required />
-    <input type="password" placeholder="Password" required />
-    <button class="auth-btn">Log In</button>
+    <input type="email" id="loginEmail" placeholder="Email" required />
+    <input type="password" id="loginPass" placeholder="Password" required />
+    <button class="auth-btn" onclick="login()">Log In</button>
     <div class="switch-link">
       Don’t have an account? <a href="#" onclick="toggleForm()">Sign Up</a>
     </div>
   </div>
 
+  <!-- Signup Box -->
   <div class="auth-container" id="signupBox" style="display: none;">
     <h2>Create Account</h2>
     <p>Start your Happy Life journey</p>
-    <input type="text" placeholder="Full Name" required />
-    <input type="email" placeholder="Email" required />
-    <input type="password" placeholder="Password" required />
-    <button class="auth-btn">Get Started</button>
+    <input type="text" id="signupName" placeholder="Full Name" required />
+    <input type="email" id="signupEmail" placeholder="Email" required />
+    <input type="password" id="signupPass" placeholder="Password" required />
+    <button class="auth-btn" onclick="signup()">Get Started</button>
     <div class="switch-link">
       Already have an account? <a href="#" onclick="toggleForm()">Log In</a>
     </div>
   </div>
 
   <script>
-  function toggleForm() {
-    const login = document.getElementById("loginBox");
-    const signup = document.getElementById("signupBox");
-    login.style.display = login.style.display === "none" ? "block" : "none";
-    signup.style.display = signup.style.display === "none" ? "block" : "none";
-  }
-
-  // Redirect after fake login/signup
-  document.querySelectorAll(".auth-btn").forEach(btn => {
-    btn.addEventListener("click", function () {
-      // Optional: Add simple form validation if needed here
-      window.location.href = "homepage.html"; // Redirect to your actual homepage
+    // Auto-login if already signed in
+    document.addEventListener("DOMContentLoaded", () => {
+      if (localStorage.getItem("loggedIn") === "true") {
+        window.location.href = "homepage.html";
+      }
     });
-  });
-</script>
+
+    function toggleForm() {
+      const login = document.getElementById("loginBox");
+      const signup = document.getElementById("signupBox");
+      login.style.display = login.style.display === "none" ? "block" : "none";
+      signup.style.display = signup.style.display === "none" ? "block" : "none";
+    }
+
+    function login() {
+      const email = document.getElementById("loginEmail").value.trim();
+      const pass = document.getElementById("loginPass").value.trim();
+      if (email && pass) {
+        localStorage.setItem("loggedIn", "true");
+        window.location.href = "homepage.html";
+      } else {
+        alert("Please enter your email and password.");
+      }
+    }
+
+    function signup() {
+      const name = document.getElementById("signupName").value.trim();
+      const email = document.getElementById("signupEmail").value.trim();
+      const pass = document.getElementById("signupPass").value.trim();
+      if (name && email && pass) {
+        localStorage.setItem("loggedIn", "true");
+        window.location.href = "homepage.html";
+      } else {
+        alert("Please fill all the fields.");
+      }
+    }
+
+    // PWA service worker
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('service-worker.js')
+          .then(reg => console.log('Service Worker registered', reg))
+          .catch(err => console.error('Service Worker failed', err));
+      });
+    }
+  </script>
 
 </body>
 </html>
