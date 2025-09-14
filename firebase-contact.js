@@ -4,7 +4,7 @@ console.log("Firebase Contact JS loaded");
 const firebaseConfig = {
   apiKey: "AIzaSyCw3BhLvpT_ueVRAxS79I79gnG9GwSLAHQ",
   authDomain: "happy-life-app-ee753.firebaseapp.com",
-  databaseURL: "https://happy-life-app-ee753-default-rtdb.firebaseio.com",
+  databaseURL: "https://console.firebase.google.com/project/happy-life-app-ee753/database/happy-life-app-ee753-default-rtdb/data/~2F",
   projectId: "happy-life-app-ee753",
   storageBucket: "happy-life-app-ee753.appspot.com",
   messagingSenderId: "738209317344",
