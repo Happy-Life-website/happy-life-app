@@ -1,6 +1,6 @@
-import { initializeApp } from "https://www.gstatic.com/firebasejs/12.2.1/firebase-app.js";
-import { getDatabase, ref, push, set } from "https://www.gstatic.com/firebasejs/12.2.1/firebase-database.js";
+console.log("Firebase Contact JS loaded");
 
+// 🔥 Your Firebase config
 const firebaseConfig = {
   apiKey: "AIzaSyCw3BhLvpT_ueVRAxS79I79gnG9GwSLAHQ",
   authDomain: "happy-life-app-ee753.firebaseapp.com",
@@ -12,39 +12,41 @@ const firebaseConfig = {
   measurementId: "G-BSWDHEP283"
 };
 
-// ✅ Init Firebase
-const app = initializeApp(firebaseConfig);
-const db = getDatabase(app);
+// ✅ Initialize Firebase
+firebase.initializeApp(firebaseConfig);
+const db = firebase.database();
 
-// ✅ Handle Form
-document.getElementById("contactForm").addEventListener("submit", async (e) => {
+// ✅ Handle Form Submission
+document.getElementById("contactForm").addEventListener("submit", function(e) {
   e.preventDefault();
+  console.log("Form submitted");
 
   const name = document.getElementById("name").value.trim();
   const phone = document.getElementById("phone").value.trim();
 
   if (!name || !phone) {
+    console.log("Validation failed");
     showMessage("Please enter all fields.", "orange");
     return;
   }
 
-  try {
-    const contactsRef = ref(db, "contacts");
-    const newContact = push(contactsRef);
-    await set(newContact, {
-      name,
-      phone,
-      timestamp: new Date().toISOString()
-    });
+  db.ref("contacts").push({
+    name: name,
+    phone: phone,
+    timestamp: new Date().toISOString()
+  })
+  .then(() => {
+    console.log("Data pushed successfully");
     showMessage("Contact saved successfully!", "green");
     document.getElementById("contactForm").reset();
-  } catch (error) {
-    console.error(error);
+  })
+  .catch((error) => {
+    console.error("Error saving contact:", error);
     showMessage("Error saving contact.", "red");
-  }
+  });
 });
 
-// ✅ Status Message
+// ✅ Show status message
 function showMessage(msg, color) {
   const el = document.getElementById("statusMsg");
   el.textContent = msg;
