@@ -1,10 +1,8 @@
-console.log("Firebase Contact JS loaded");
-
-// 🔥 Your Firebase config
+// 🔥 Firebase config
 const firebaseConfig = {
   apiKey: "AIzaSyCw3BhLvpT_ueVRAxS79I79gnG9GwSLAHQ",
   authDomain: "happy-life-app-ee753.firebaseapp.com",
-  databaseURL: "https://console.firebase.google.com/project/happy-life-app-ee753/database/happy-life-app-ee753-default-rtdb/data/~2F",
+  databaseURL: "https://happy-life-app-ee753-default-rtdb.firebaseio.com", // IMPORTANT
   projectId: "happy-life-app-ee753",
   storageBucket: "happy-life-app-ee753.appspot.com",
   messagingSenderId: "738209317344",
@@ -16,27 +14,25 @@ const firebaseConfig = {
 firebase.initializeApp(firebaseConfig);
 const db = firebase.database();
 
-// ✅ Handle Form Submission
+// ✅ Handle form submission
 document.getElementById("contactForm").addEventListener("submit", function(e) {
   e.preventDefault();
-  console.log("Form submitted");
 
   const name = document.getElementById("name").value.trim();
   const phone = document.getElementById("phone").value.trim();
 
   if (!name || !phone) {
-    console.log("Validation failed");
     showMessage("Please enter all fields.", "orange");
     return;
   }
 
+  // Save to Realtime Database
   db.ref("contacts").push({
     name: name,
     phone: phone,
     timestamp: new Date().toISOString()
   })
   .then(() => {
-    console.log("Data pushed successfully");
     showMessage("Contact saved successfully!", "green");
     document.getElementById("contactForm").reset();
   })
@@ -48,15 +44,11 @@ document.getElementById("contactForm").addEventListener("submit", function(e) {
 
 // ✅ Show status message
 function showMessage(msg, color) {
-  const el = document.getElementById("statusMsg");
-  el.textContent = msg;
-  el.style.color = color;
-  el.style.display = "block";
-  setTimeout(() => { el.style.display = "none"; }, 3000);
+  const statusMsg = document.getElementById("statusMsg");
+  statusMsg.textContent = msg;
+  statusMsg.style.color = color;
+  statusMsg.style.display = "block";
+  setTimeout(() => {
+    statusMsg.style.display = "none";
+  }, 3000);
 }
-
-// 💡 Blinking Emergency Header
-setInterval(() => {
-  const header = document.getElementById("emergency-header");
-  if (header) header.style.visibility = (header.style.visibility === "hidden") ? "visible" : "hidden";
-}, 1000);
