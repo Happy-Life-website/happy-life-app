@@ -1,9 +1,8 @@
 document.addEventListener("DOMContentLoaded", () => {
-  // 🔥 Your Supabase config
   const SUPABASE_URL = "https://boavgvgvaqgoatzhvvzk.supabase.co";
   const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImJvYXZndmd2YXFnb2F0emh2dnprIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTc5MjI1OTIsImV4cCI6MjA3MzQ5ODU5Mn0.IFnYM79NJBJcWa_gVxFRfs3VQWQIfHnP1nXoxWzbMjs";
 
-  // ✅ Initialize Supabase client
+  // NOTE the capital S here
   const supabase = Supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
   const form = document.getElementById("contactForm");
