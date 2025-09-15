@@ -1,13 +1,11 @@
-// Make sure to wrap everything after the DOM is loaded
 document.addEventListener("DOMContentLoaded", () => {
   // 🔥 Your Supabase config
-  const SUPABASE_URL = "https://boavgvgvaqgoatzhvvzk.supabase.co"; // replace with your URL
-  const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImJvYXZndmd2YXFnb2F0emh2dnprIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTc5MjI1OTIsImV4cCI6MjA3MzQ5ODU5Mn0.IFnYM79NJBJcWa_gVxFRfs3VQWQIfHnP1nXoxWzbMjs"; // replace with your anon key
+  const SUPABASE_URL = "https://boavgvgvaqgoatzhvvzk.supabase.co";
+  const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImJvYXZndmd2YXFnb2F0emh2dnprIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTc5MjI1OTIsImV4cCI6MjA3MzQ5ODU5Mn0.IFnYM79NJBJcWa_gVxFRfs3VQWQIfHnP1nXoxWzbMjs";
 
-  // Initialize Supabase client
+  // ✅ Initialize Supabase client
   const supabase = Supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
-  // Handle form submission
   const form = document.getElementById("contactForm");
   const statusMsg = document.getElementById("statusMsg");
 
@@ -37,7 +35,6 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
-  // Function to show status message
   function showMessage(msg, color) {
     statusMsg.textContent = msg;
     statusMsg.style.color = color;
